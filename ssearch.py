@@ -209,6 +209,6 @@ if __name__ == '__main__' :
                 io.imsave(output_name, image_r)
                 print('result saved at {}'.format(output_name))
                 fquery = input('Query:')
-        print("Accuracy en clasificacion de ", layer, " esa: ",acur(accurarcy))
+        print("Accuracy en clasificacion es: ",acur(accurarcy))
         
         
