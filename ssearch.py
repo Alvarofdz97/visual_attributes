@@ -154,7 +154,10 @@ class SSearch :
                     
 #unit test        
 def acur(lista):
-    return sum(lista)/len(lista)
+  if sum(lista)==0:
+    print("es 0")
+    break
+  return sum(lista)/len(lista)
     
 if __name__ == '__main__' :
     parser = argparse.ArgumentParser(description = "Similarity Search")        
