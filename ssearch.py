@@ -156,7 +156,7 @@ class SSearch :
 def acur(lista):
   if sum(lista)==0:
     print("es 0")
-    break
+    return(0)
   return sum(lista)/len(lista)
     
 if __name__ == '__main__' :
@@ -185,7 +185,7 @@ if __name__ == '__main__' :
                 idx = ssearch.search(im_query, metric)                
                 r_filenames = ssearch.get_filenames(idx)
                 r_filenames.insert(0, fquery)#
-                string1=r_filenames[0].split("\")[5]
+                string1=r_filenames[0].split("/")[5]
                 string2 =fquery.split("/")[6]                          
                 if string1==string2:
                    accurarcy.append(1)
