@@ -153,6 +153,8 @@ class SSearch :
         return image_r    
                     
 #unit test        
+def acur(lista):
+    return sum(lista)/len(lista)
     
 if __name__ == '__main__' :
     parser = argparse.ArgumentParser(description = "Similarity Search")        
@@ -166,6 +168,7 @@ if __name__ == '__main__' :
     configuration_file = pargs.config        
     ssearch = SSearch(pargs.config, pargs.name, pargs.layer)
     metric = 'cos'
+    accurarcy = []
     norm = 'square_root'
     if pargs.mode == 'compute' :        
         ssearch.compute_features_from_catalog()        
@@ -178,7 +181,13 @@ if __name__ == '__main__' :
                 im_query = ssearch.read_image(fquery)
                 idx = ssearch.search(im_query, metric)                
                 r_filenames = ssearch.get_filenames(idx)
-                r_filenames.insert(0, fquery)#           
+                r_filenames.insert(0, fquery)#
+                string1=r_filenames[0].split("\")[5]
+                string2 =fquery.split("/")[6]                          
+                if string1==string2:
+                   accurarcy.append(1)
+                else:
+                    accurarcy.append(0)
                 image_r= ssearch.draw_result(r_filenames)
                 output_name = os.path.basename(fquery) + '_{}_{}_{}_result.png'.format(metric, norm, ssearch.output_layer_name)
                 output_name = os.path.join(pargs.odir, output_name)
@@ -197,5 +206,6 @@ if __name__ == '__main__' :
                 io.imsave(output_name, image_r)
                 print('result saved at {}'.format(output_name))
                 fquery = input('Query:')
+        print("Accuracy en clasificacion de ", layer, " esa: ",acur(accurarcy))
         
         
