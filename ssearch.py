@@ -186,14 +186,15 @@ if __name__ == '__main__' :
                 r_filenames = ssearch.get_filenames(idx)
                 r_filenames.insert(0, fquery)#
                 string1=r_filenames[2].split("/")[5]
-                string2 =fquery.split("/")[5]                          
+                string2 =fquery.split("/")[5]
+                print(r_filenames[2])
+                print(fquery)       
                 if string1==string2:
                    accurarcy.append(1)
                 else:
                     accurarcy.append(0)
-                image_r= ssearch.draw_result(r_filenames)
-                output_name = os.path.basename(fquery) + '_{}_{}_{}_result.png'.format(metric, norm, ssearch.output_layer_name)
-                output_name = os.path.join(pargs.odir, output_name)             
+                print("Accuracy en clasificacion de esa: ",acur(accurarcy))
+                         
         else :
             fquery = input('Query:')
             while fquery != 'quit' :
