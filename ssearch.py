@@ -185,8 +185,8 @@ if __name__ == '__main__' :
                 idx = ssearch.search(im_query, metric)                
                 r_filenames = ssearch.get_filenames(idx)
                 r_filenames.insert(0, fquery)#
-                string1=r_filenames[0].split("/")[5]
-                string2 =fquery.split("/")[6]                          
+                string1=r_filenames[2].split("/")[5]
+                string2 =fquery.split("/")[5]                          
                 if string1==string2:
                    accurarcy.append(1)
                 else:
