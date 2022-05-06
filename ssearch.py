@@ -114,11 +114,13 @@ class SSearch :
     def compute_features_from_catalog(self):
         n_batch = self.configuration.get_batch_size()        
         images = np.empty((self.data_size, self.input_shape[0], self.input_shape[1], self.input_shape[2]), dtype = np.float32)
+        category = []
         for i, filename in enumerate(self.filenames) :
             if i % 1000 == 0:
                 print('reading {}'.format(i))
                 sys.stdout.flush()
             images[i, ] = self.read_image(filename)        
+            category.append(filename.split("/")[5])
         n_iter = np.int(np.ceil(self.data_size / n_batch))
         result = []
         for i in range(n_iter) :
@@ -127,7 +129,11 @@ class SSearch :
             batch = images[i*n_batch : min((i + 1) * n_batch, self.data_size), ]
             result.append(self.compute_features(batch))
         fvs = np.concatenate(result)    
-        print('fvs {}'.format(fvs.shape))    
+        print('fvs {}'.format(fvs.shape))
+        txtfile= open(os.path.join(self.ssearch_dir, "category.txt"), "w")
+        for element in category:
+          txtfile.write(element + "\n")
+        txtfile.close()
         fvs_file = os.path.join(self.ssearch_dir, "features.np")
         fshape_file = os.path.join(self.ssearch_dir, "features_shape.np")
         np.asarray(fvs.shape).astype(np.int32).tofile(fshape_file)       
