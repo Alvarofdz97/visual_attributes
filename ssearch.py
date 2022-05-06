@@ -186,11 +186,14 @@ if __name__ == '__main__' :
                 r_filenames = ssearch.get_filenames(idx)
                 r_filenames.insert(0, fquery)#
                 string1=r_filenames[2].split("/")[5]
-                string2 =fquery.split("/")[5]     
+                string2 =fquery.split("/")[5]
+                print(r_filenames[2])
+                print(fquery)       
                 if string1==string2:
                    accurarcy.append(1)
                 else:
                     accurarcy.append(0)
+                print("Accuracy en clasificacion de esa: ",acur(accurarcy))
                          
         else :
             fquery = input('Query:')
@@ -205,6 +208,6 @@ if __name__ == '__main__' :
                 io.imsave(output_name, image_r)
                 print('result saved at {}'.format(output_name))
                 fquery = input('Query:')
-        print("Accuracy en la capa ",{pargs.layer},", sobre ",{pargs.list.split("/")[3]}," es: ",acur(accurarcy))
+        print("Accuracy en clasificacion es: ",acur(accurarcy))
         
         
